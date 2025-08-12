@@ -1,0 +1,1 @@
+{ "rewrites": [ {"source": "/auth/callback", "destination": "/auth/callback/index.html"} ] }
