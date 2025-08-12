@@ -1,1 +1,73 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Privacy Policy – Reelr</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/site.css"></head><body><header><h1>Privacy Policy</h1><nav><a href="/">Home</a></nav></header><main><p>Effective: 11 Aug 2025</p><h2>1. Overview</h2><p>Reelr ("we","us") provides a platform for authenticated TikTok creators to prepare, schedule, and post or draft short‑form videos.</p><h2>2. Data We Collect</h2><ul><li><strong>OAuth Profile:</strong> open_id, basic profile fields permitted by <code>user.info.basic</code>.</li><li><strong>Posting Metadata:</strong> captions, scheduling times, selected privacy level.</li><li><strong>Generated Media:</strong> Optional AI‑generated audio/video (stored in temporary cache before posting).</li><li><strong>Operational Logs:</strong> Timestamps, API success/failure codes (no raw TikTok content beyond what is required).</li></ul><h2>3. How We Use Data</h2><ul><li>Authenticate and maintain session with TikTok APIs.</li><li>Prepare and submit posts/drafts at user request.</li><li>Provide scheduling and workflow UX.</li><li>Security auditing and abuse prevention.</li></ul><h2>4. Data Sharing</h2><p>We do not sell user data. We transmit media and metadata only to TikTok endpoints selected by the user. Infrastructure vendors (hosting, storage, monitoring) are bound by contractual processing terms.</p><h2>5. Retention</h2><p>Access & refresh tokens: stored encrypted; rotated per TikTok policy. Revoked tokens purged within 30 days. Media assets deleted automatically within 24h after successful post (or draft abandonment) unless user explicitly saves presets.</p><h2>6. Security</h2><p>Encryption in transit (HTTPS) and at rest. Principle of least privilege for internal services. Routine log review.</p><h2>7. User Controls</h2><ul><li>Disconnect via TikTok’s Manage App Permissions.</li><li>Request deletion: email <a href="mailto:privacy@reelr.ai">privacy@reelr.ai</a>.</li><li>Revoke tokens inside Reelr UI (planned) or through support.</li></ul><h2>8. International Transfers</h2><p>Data may be processed in the United States and other regions where our cloud infrastructure operates with appropriate safeguards.</p><h2>9. Children</h2><p>Not directed to children under 13 (or higher local age). We do not knowingly process such data.</p><h2>10. Changes</h2><p>Material changes posted here with updated effective date.</p><h2>11. Contact</h2><p>privacy@reelr.ai</p><footer><p><a href="/terms/">Terms of Service</a></p></footer></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Privacy Policy – Reelr</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header>
+  <div class="wrapper navbar">
+    <a class="brand" href="/">Reelr</a>
+    <nav>
+      <a href="/about/">About</a>
+      <a href="/support/">Support</a>
+      <a href="/privacy/" aria-current="page">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <div class="nav-actions"><a class="btn tiktok-btn" href="/">Login</a></div>
+  </div>
+</header>
+<main>
+  <div class="wrapper" style="padding:60px 0 30px;">
+    <h1>Privacy Policy</h1>
+    <p style="color:#9aa7b8;font-size:14px;">Effective: 11 Aug 2025</p>
+    <h2>1. Overview</h2>
+    <p>Reelr ("we","us") provides a platform for authenticated TikTok creators to prepare, schedule, and post or draft short‑form videos.</p>
+    <h2>2. Data We Collect</h2>
+    <ul>
+      <li><strong>OAuth Profile:</strong> open_id, basic profile fields permitted by <code class="inline-code">user.info.basic</code>.</li>
+      <li><strong>Posting Metadata:</strong> captions, scheduling times, selected privacy level.</li>
+      <li><strong>Generated Media:</strong> Optional AI‑generated audio/video (temporary cache before posting).</li>
+      <li><strong>Operational Logs:</strong> Timestamps, API success/failure codes (no raw TikTok content beyond what is required).</li>
+    </ul>
+    <h2>3. How We Use Data</h2>
+    <ul>
+      <li>Authenticate & maintain session with TikTok APIs.</li>
+      <li>Prepare & submit posts/drafts at user request.</li>
+      <li>Provide scheduling & workflow UX.</li>
+      <li>Security auditing & abuse prevention.</li>
+    </ul>
+    <h2>4. Data Sharing</h2>
+    <p>We do not sell user data. We transmit media/metadata only to TikTok endpoints selected by the user. Infrastructure vendors are bound by processing terms.</p>
+    <h2>5. Retention</h2>
+    <p>Tokens encrypted & rotated per policy. Revoked tokens purged within 30 days. Media assets deleted within 24h after successful post unless user saves presets.</p>
+    <h2>6. Security</h2>
+    <p>HTTPS, encrypted storage, least privilege, routine log review.</p>
+    <h2>7. User Controls</h2>
+    <ul>
+      <li>Disconnect via TikTok Manage App Permissions.</li>
+      <li>Request deletion: <a href="mailto:privacy@reelr.ai">privacy@reelr.ai</a>.</li>
+      <li>Revoke tokens via support channel.</li>
+    </ul>
+    <h2>8. International Transfers</h2>
+    <p>Data may be processed in regions where our cloud operates with safeguards.</p>
+    <h2>9. Children</h2>
+    <p>Not directed to children under 13 (or higher local age). We do not knowingly process such data.</p>
+    <h2>10. Changes</h2>
+    <p>Material changes posted here with updated effective date.</p>
+    <h2>11. Contact</h2>
+    <p><a href="mailto:privacy@reelr.ai">privacy@reelr.ai</a></p>
+  </div>
+</main>
+<footer>
+  <div class="wrapper cols">
+    <div><h4>Product</h4><a href="/about/">About</a><a href="/support/">Support</a></div>
+    <div><h4>Legal</h4><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+    <div><h4>Info</h4><a href="/legal/ai-disclosure.html">AI Disclosure</a></div>
+  </div>
+  <div class="wrapper" style="margin-top:46px;font-size:12px;color:#627384;">© 2025 Reelr</div>
+</footer>
+</body>
+</html>

@@ -1,1 +1,55 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Support – Reelr</title><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/site.css"></head><body><header><h1>Support & Contact</h1><nav><a href="/">Home</a></nav></header><main><section><h2>Contact Channels</h2><ul><li>Email: <a href="mailto:support@reelr.ai">support@reelr.ai</a></li><li>Legal: <a href="mailto:legal@reelr.ai">legal@reelr.ai</a></li><li>Privacy: <a href="mailto:privacy@reelr.ai">privacy@reelr.ai</a></li></ul></section><section><h2>Common Topics</h2><h3>Disconnecting TikTok</h3><p>Visit TikTok Manage App Permissions and revoke Reelr; we purge tokens within 30 days.</p><h3>Request Data Deletion</h3><p>Email privacy@reelr.ai from the address associated with your account and include your TikTok open_id (from profile). We will confirm deletion.</p><h3>Status of Posts</h3><p>The Service polls official TikTok status endpoints. If a video appears stuck >30 minutes, re‑initiate upload or contact support.</p></section></main><footer><small>© 2025 Reelr</small></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Support – Reelr</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<header>
+  <div class="wrapper navbar">
+    <a class="brand" href="/">Reelr</a>
+    <nav>
+      <a href="/about/">About</a>
+      <a href="/support/" aria-current="page">Support</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <div class="nav-actions"><a class="btn tiktok-btn" href="/">Login</a></div>
+  </div>
+</header>
+<main>
+  <div class="wrapper" style="padding:60px 0 30px;">
+    <h1>Support & Contact</h1>
+    <div class="section" style="padding-top:10px;">
+      <h2>Contact Channels</h2>
+      <ul style="line-height:1.7;">
+        <li>Email: <a href="mailto:support@reelr.ai">support@reelr.ai</a></li>
+        <li>Legal: <a href="mailto:legal@reelr.ai">legal@reelr.ai</a></li>
+        <li>Privacy: <a href="mailto:privacy@reelr.ai">privacy@reelr.ai</a></li>
+      </ul>
+    </div>
+    <div class="section" style="padding-top:10px;">
+      <h2>Common Topics</h2>
+      <h3>Disconnecting TikTok</h3>
+      <p>Go to TikTok > Settings & Privacy > Security > Manage App Permissions, revoke Reelr. Our system detects revocation & purges tokens within 30 days (usually within minutes).</p>
+      <h3>Request Data Deletion</h3>
+      <p>Email <a href="mailto:privacy@reelr.ai">privacy@reelr.ai</a> from your account email including your TikTok <code class="inline-code">open_id</code>. We'll confirm deletion within 7 days.</p>
+      <h3>Status of Posts</h3>
+      <p>We poll TikTok’s status endpoint until <code class="inline-code">PUBLISHED</code> or failure. If stalled > 30 min, re‑initiate or contact support with the <code class="inline-code">publish_id</code>.</p>
+      <h3>Report Abuse</h3>
+      <p>Forward suspicious activity to <a href="mailto:abuse@reelr.ai">abuse@reelr.ai</a>. We respond within 24h.</p>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrapper cols">
+    <div><h4>Product</h4><a href="/">Home</a><a href="/about/">About</a></div>
+    <div><h4>Legal</h4><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+    <div><h4>Info</h4><a href="/legal/ai-disclosure.html">AI Disclosure</a></div>
+  </div>
+  <div class="wrapper" style="margin-top:46px;font-size:12px;color:#627384;">© 2025 Reelr</div>
+</footer>
+</body>
+</html>

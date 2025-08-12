@@ -1,2 +1,48 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>OAuth Callback – Reelr</title><meta name="viewport" content="width=device-width,initial-scale=1"><script>/* Placeholder handler: In production this page would parse ?code=&state=, then POST to backend */
-(function(){const params=new URLSearchParams(window.location.search);const code=params.get('code');const state=params.get('state');if(code){document.addEventListener('DOMContentLoaded',()=>{document.getElementById('status').textContent='Received authorization code. You may return to the Reelr app.';});}})();</script></head><body><main><h1>Authorization Complete</h1><p id="status">Awaiting authorization code...</p><p>If this page was opened after consenting in TikTok, you can close it. Our backend will exchange the code securely.</p></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OAuth Callback – Reelr</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/site.css">
+<script>
+(function(){
+  function $(id){return document.getElementById(id);} 
+  document.addEventListener('DOMContentLoaded',()=>{
+    const params=new URLSearchParams(window.location.search);
+    const code=params.get('code');
+    const state=params.get('state');
+    const error=params.get('error');
+    if(error){ $('status').textContent='Authorization error: '+error; return; }
+    if(code){
+      $('status').textContent='Authorization code received.';
+      const storedState=sessionStorage.getItem('oauth_state');
+      if(storedState && storedState!==state){ $('mismatch').textContent='Warning: state mismatch. Do not proceed.'; }
+      $('code').textContent=code;
+      $('state').textContent=state||'(none)';
+      const pkceVerifier=sessionStorage.getItem('pkce_verifier');
+      if(pkceVerifier){ $('verifier').textContent=pkceVerifier; }
+      // In production: POST {code, verifier, state} to backend to exchange securely
+    } else {
+      $('status').textContent='No authorization code present.';
+    }
+  });
+})();
+</script>
+</head>
+<body>
+  <div class="wrapper" style="padding:40px 0 70px;">
+    <h1 style="margin-top:0;">Authorization Complete</h1>
+    <p id="status">Processing...</p>
+    <p id="mismatch" style="color:#ff5867;font-weight:600;"></p>
+    <div class="card" style="margin-top:24px;">
+      <h3 style="margin-top:0;">Returned Parameters</h3>
+      <div class="code-box" style="margin-top:8px;">
+        code: <span id="code">(pending)</span>\nstate: <span id="state">(pending)</span>\nverifier: <span id="verifier">(pending)</span>
+      </div>
+      <p style="font-size:13px;color:#9aa7b8;">For security the code exchange occurs server‑side with the saved PKCE verifier.</p>
+      <p><a class="btn outline" href="/">Return to Reelr</a></p>
+    </div>
+  </div>
+</body>
+</html>

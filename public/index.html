@@ -1,1 +1,114 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Reelr UGCPoster – AI-Powered TikTok Publishing</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Reelr (UGCPoster) lets creators and teams schedule, optimize, and directly (or draft) post AI-enhanced short‑form videos to TikTok."><link rel="stylesheet" href="/site.css"></head><body><header><h1>Reelr (UGCPoster)</h1><nav><a href="/">Home</a> · <a href="/about/">About</a> · <a href="/support/">Support</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></nav></header><main><section><h2>Unified TikTok Content Workflow</h2><p>Reelr helps creators and brands generate, curate, and publish high‑quality short videos. Connect your TikTok account via OAuth (Login Kit) and choose either direct posting (video.publish) or draft upload (video.upload) for final in‑app editing.</p></section><section><h3>Key Capabilities</h3><ul><li>Secure TikTok Login (Login Kit, user.info.basic)</li><li>Draft Upload & Direct Post (video.upload / video.publish scopes as approved)</li><li>Automated AI media generation (disclosed as AIGC when applicable)</li><li>Scheduling & metadata templating</li><li>Compliance: explicit privacy & terms, user consent, revocable access</li></ul></section><section><h3>Why TikTok App Review Should Approve</h3><ol><li><strong>Clear User Value:</strong> Streamlines legitimate creator workflow—no scraping or unsupported automation.</li><li><strong>Scope Minimization:</strong> Only requests required scopes (user.info.basic plus content posting).</li><li><strong>Transparent AIGC:</strong> We label AI‑generated media and respect platform policies.</li><li><strong>Revocation Ready:</strong> Users can disconnect at any time; we honor token revocation.</li></ol></section><section><h3>Security & Privacy</h3><p>Access tokens are stored server‑side, encrypted at rest. We never request user passwords. Users may revoke authorization inside TikTok or via our support channel.</p></section><section><h3>Contact</h3><p>Email: <a href="mailto:support@reelr.ai">support@reelr.ai</a></p></section></main><footer><small>© 2025 Reelr • <a href="/privacy/">Privacy</a> • <a href="/terms/">Terms</a> • <a href="/support/">Support</a></small></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reelr UGCPoster – AI-Powered TikTok Publishing</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Reelr (UGCPoster) lets creators schedule, optimize & directly or draft post AI‑assisted short‑form videos to TikTok using official APIs.">
+<link rel="stylesheet" href="/site.css">
+<script>
+// Basic front-end OAuth launcher (authorization code + PKCE optional)
+const TIKTOK_CLIENT_KEY = 'sbawj52ud7wmo1j7hc'; // TODO: inject at build or runtime
+const REDIRECT_URI = encodeURIComponent(window.location.origin + '/auth/callback/');
+const SCOPES = ['user.info.basic','video.upload']; // add 'video.publish' post-approval
+function b64url(buf){return btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+async function genPkce(){const rand=new Uint8Array(32);crypto.getRandomValues(rand);const v=b64url(rand);const digest=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));const c=b64url(digest);return {verifier:v, challenge:c};}
+async function startTikTokOAuth(){if(!TIKTOK_CLIENT_KEY||TIKTOK_CLIENT_KEY.startsWith('REPLACE')){alert('Configure TIKTOK_CLIENT_KEY');return;} const state=Math.random().toString(36).slice(2,12);const {verifier,challenge}=await genPkce(); sessionStorage.setItem('pkce_verifier', verifier); sessionStorage.setItem('oauth_state', state); const authUrl = `https://www.tiktok.com/v2/auth/authorize/?client_key=${encodeURIComponent(TIKTOK_CLIENT_KEY)}&scope=${encodeURIComponent(SCOPES.join(','))}&response_type=code&redirect_uri=${REDIRECT_URI}&state=${state}&code_challenge=${challenge}&code_challenge_method=S256`; window.location = authUrl; }
+</script>
+</head>
+<body>
+<header>
+  <div class="wrapper navbar">
+    <a class="brand" href="/">Reelr<span style="font-size:11px;font-weight:500;letter-spacing:1px;background:#1f2c39;padding:3px 8px;border-radius:20px;color:#9aa7b8;">Beta</span></a>
+    <nav aria-label="Main Navigation">
+      <a href="/about/">About</a>
+      <a href="/support/">Support</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/legal/ai-disclosure.html">AI Disclosure</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn tiktok-btn" onclick="startTikTokOAuth()"><span>Continue with TikTok</span></button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="wrapper">
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Post smarter <span class="gradient-text">short‑form</span> content to TikTok</h1>
+        <p class="lede">Reelr unifies AI assisted creation, compliance review, scheduling, and <strong>official</strong> TikTok direct & draft posting—no hacks, just approved APIs.</p>
+        <div class="hero-cta">
+          <button class="btn tiktok-btn" onclick="startTikTokOAuth()"><span>Login with TikTok</span></button>
+          <a class="btn outline" href="/about/">Learn more</a>
+        </div>
+        <p style="margin-top:22px;font-size:13px;color:#9aa7b8;">We only request <code class="inline-code">user.info.basic</code> + <code class="inline-code">video.upload</code> (and later <code class="inline-code">video.publish</code> once approved).</p>
+      </div>
+      <div class="card" style="align-self:start;">
+        <div class="badge gradient">Secure Flow</div>
+        <h3 style="margin:14px 0 10px;">How it works</h3>
+        <ol style="margin:0 0 14px 18px; padding:0; font-size:14px; color:#9aa7b8; line-height:1.55;">
+          <li>Authenticate with TikTok (OAuth + PKCE)</li>
+          <li>Choose media (upload or AI generated)</li>
+          <li>Set caption, cover timestamp, privacy</li>
+          <li>Draft upload or direct post via API</li>
+          <li>Poll status & confirm publication</li>
+        </ol>
+        <div class="code-box" aria-label="Example API sequence" role="region">POST /v2/post/publish/video/init\nPUT  upload_url (chunked)\nGET  /v2/post/publish/status/fetch\n→ state: PROCESSING → PUBLISHED</div>
+      </div>
+    </section>
+
+    <section class="features" aria-label="Key Features">
+      <div class="feature"><h3>Official APIs</h3><p>Uses TikTok Login Kit & Content Posting—fully compliant and review‑ready.</p></div>
+      <div class="feature"><h3>AI Assist</h3><p>Optional AI video, audio & music with explicit labeling & user approval gates.</p></div>
+      <div class="feature"><h3>Draft or Direct</h3><p>Upload drafts for last‑mile edits, or publish instantly (post‑approval).</p></div>
+      <div class="feature"><h3>Scheduling</h3><p>Queue multiple assets, manage captions & cover frames in one workspace.</p></div>
+      <div class="feature"><h3>Safety & Privacy</h3><p>Tokens encrypted; minimal scopes; easy revocation & data deletion path.</p></div>
+      <div class="feature"><h3>Status Polling</h3><p>Real‑time processing + failure reason surfacing for faster retries.</p></div>
+    </section>
+
+    <section class="section" id="review" aria-labelledby="review-heading">
+      <h2 id="review-heading">For TikTok App Review</h2>
+      <p>This site provides transparent disclosure of features, scope usage, and user controls. The application flow is limited to essential scopes. AI generated media is clearly indicated and requires human confirmation before posting.</p>
+      <p style="font-size:14px;color:#9aa7b8;">Need a demo? Contact <a href="mailto:support@reelr.ai">support@reelr.ai</a> for a screencast link.</p>
+    </section>
+
+    <section class="section" aria-labelledby="security-heading">
+      <h2 id="security-heading">Security & Data Handling</h2>
+      <p>We store only open_id, basic profile (display name, avatar URL), posting metadata (caption, chosen privacy), and ephemeral upload references. Media assets auto‑purge within 24h of successful posting or draft abandonment unless intentionally saved. Revocation triggers token wipe.</p>
+    </section>
+
+    <section class="section" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p>Email: <a href="mailto:support@reelr.ai">support@reelr.ai</a> • Privacy: <a href="mailto:privacy@reelr.ai">privacy@reelr.ai</a></p>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="wrapper cols" style="row-gap:50px;">
+    <div>
+      <h4>Product</h4>
+      <a href="/about/">About</a>
+      <a href="/support/">Support</a>
+      <a href="/legal/ai-disclosure.html">AI Disclosure</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+    </div>
+    <div>
+      <h4>Review Notes</h4>
+      <a href="#review">Scope Justification</a>
+      <a href="#security-heading">Security</a>
+    </div>
+    <div>
+      <h4>Account</h4>
+      <a href="javascript:startTikTokOAuth()">Login with TikTok</a>
+      <a href="mailto:privacy@reelr.ai">Data Deletion</a>
+    </div>
+  </div>
+  <div class="wrapper" style="margin-top:46px;font-size:12px;color:#627384;">© 2025 Reelr • All trademarks belong to their owners.</div>
+</footer>
+</body>
+</html>
